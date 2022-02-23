@@ -50,7 +50,7 @@ Verificar que tengamos Node.Js instalado usando el sig. comando:
 
      node -v
  
- De no tenerla isntalada entonces descargar aqui: https://nodejs.org/es/download/
+ De no tenerla instalada entonces descargar aqui: https://nodejs.org/es/download/
  
  Tener una copia del proyecto en tu computadora.
  
