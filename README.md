@@ -1,20 +1,61 @@
-﻿# Pruebas-de-Software
+﻿# Pruebas-de-Software 
  
-SERVICIO BD MONGO
+ INFRAESTRUCTURA DEL PROYECTO
+ 
+ Frontend fue desarrollado con React.js, un framework.
+ 
+ Backend fue desarrollado con Express.js, una libreria de Node.js.
+ 
+ Servicios de bases de datos no relacional (MongoDb) levantado con Docker.
+ 
+ 
+ SERVICIO BD MONGO
+
      docker-compose up -d
+
 
 FRONTEND & BACKEND
 
-Instalar dependencias: npm install
+Instalar dependencias: 
+     
+     npm install
 
-Correr programa: npm run start
+Correr aplicación: 
+     
+     npm run start
 
 
-APLICACIONES UTILES
+HERRAMIENTAS UTILIZADAS
+
+Docker Desktop: https://www.docker.com/products/docker-desktop
 
 Insomnia: https://insomnia.rest/download
 
 
 NoSqlBooster: https://nosqlbooster.com
 
-Link para conectarse a la Base de Datos: mongodb://localhost:27017
+Link para conectarse a la Base de Datos: 
+
+     mongodb://localhost:27017
+
+
+GitHub Desktop: https://desktop.github.com (Iniciar sesión con cuenta de GitHub)
+
+
+¿COMO INSTALAR Y CORRER DESDE 0?
+
+Descargar todas las aplicaciones descritas arriba en la sección de HERRAMIENTAS
+
+Verificar que tengamos Node.Js instalado usando el sig. comando:
+
+     node -v
+ 
+ De no tenerla isntalada entonces descargar aqui: https://nodejs.org/es/download/
+ 
+ Tener una copia del proyecto en tu computadora.
+ 
+ Abrir la aplicación de Docker Desktop
+ 
+ Ejecutar el comando descrito arriba para levantar el sevicio de MongoDB
+ 
+ Ejectuar el comando descrito arriba para levantar las aplicaciones de Backend y Frontend.
