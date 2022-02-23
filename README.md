@@ -1,9 +1,20 @@
 ﻿# Pruebas-de-Software
-Correr servicios de mongo:
+ 
+SERVICIO BD MONGO
      docker-compose up -d
 
-Instalar dependencias de cliente (frontend): npm install
-Corre cliente (frontend): npm run start
+FRONTEND & BACKEND
 
-Instalar dependencias de server (frontend): npm install
-Corre server (backend): npm run start
+Instalar dependencias: npm install
+
+Correr programa: npm run start
+
+
+APLICACIONES UTILES
+
+Insomnia: https://insomnia.rest/download
+
+
+NoSqlBooster: https://nosqlbooster.com
+
+Link para conectarse a la Base de Datos: mongodb://localhost:27017
