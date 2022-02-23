@@ -56,6 +56,6 @@ Verificar que tengamos Node.Js instalado usando el sig. comando:
  
  Abrir la aplicación de Docker Desktop
  
- Entrar a la carpeta services y ejecutar el comando descrito arriba para levantar el sevicio de MongoDB
+ Entrar a la carpeta services, crear una subcarpeta llamada 'mongodb' y ejecutar el comando descrito arriba para levantar el sevicio de MongoDB
  
  Entrar a la carpeta del backend y frontend y ejecutar el comando descrito arriba para levantar correspondientes aplicaciones.
