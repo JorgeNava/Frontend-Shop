@@ -17,13 +17,14 @@ router.post('/register', (req, res, next) => {
 })
 
 router.post('/login', (req, res, next) => {
-    const { username, password } = req.body;
-    userServices.login({ username, password})
+    const USERNAME = req.body.username;
+    const PASSWORD = req.body.password;
+    userServices.login(USERNAME, PASSWORD)
         .then(user => {
             res.json(user)
         }
     ).catch(err => {
-        console.log("ERROR: ",err)
+        console.log('ERROR: ',err);
         next(err)
     })
 })

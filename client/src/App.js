@@ -8,41 +8,27 @@ function App() {
   const [errorMessages, setErrorMessages] = useState({});
   const [isSubmitted, setIsSubmitted] = useState(false);
 
-  const errors = {
-    uname: "invalid username",
-    pass: "invalid password"
-  };
+  const [usernameLogin, setUsernameLogin] = useState('')
+  const [passwordLogin, setPasswordLogin] = useState('')
 
-  const handleSubmit = async (event) => {
+  const handleSubmit = (event) => {
     event.preventDefault();
 
-    var { uname, pass } = document.forms[0];
-
     const config = {
-        url: 'http://localhost:3002/users/login',
-        method: 'POST',
-        headers: {
-            'Access-Control-Allow-Origin': '*',
-            'origin':'x-requested-with',
-            'Access-Control-Allow-Headers': 'POST, GET, PUT, DELETE, OPTIONS, HEAD, Authorization, Origin, Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers, Access-Control-Allow-Origin',
-            'Content-Type': 'application/json',
-        },
-      data: {username: uname, password: pass },
+      url: 'http://localhost:3002/users/login',
+      method: 'POST',
+      data: {
+        username: usernameLogin, password: passwordLogin
+      },
     };
-    let resp = await axios(config);
-    console.log("RES:");
-    console.log(resp);
-    console.log(resp.data);
-    
-    if (resp) {
-      if (resp.password !== pass.value) {
-        setErrorMessages({ name: "pass", message: errors.pass });
-      } else {
+    axios(config)
+      .then((resp) => {
         setIsSubmitted(true);
-      }
-    } else {
-      setErrorMessages({ name: "uname", message: errors.uname });
-    }
+      })
+      .catch(function (error) {
+        console.log("Error: ", error);
+        setErrorMessages({ name: "pass", message: "Invalid credentials" });
+      });
   };
 
   const renderErrorMessage = (name) =>
@@ -55,12 +41,12 @@ function App() {
       <form onSubmit={handleSubmit}>
         <div className="input-container">
           <label>Username </label>
-          <input type="text" name="uname" required />
+          <input type="text" name="uname" required onChange={event => setUsernameLogin(event.target.value)} />
           {renderErrorMessage("uname")}
         </div>
         <div className="input-container">
           <label>Password </label>
-          <input type="password" name="pass" required />
+          <input type="password" name="pass" required onChange={event => setPasswordLogin(event.target.value)} />
           {renderErrorMessage("pass")}
         </div>
         <div className="button-container">
