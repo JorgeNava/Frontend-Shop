@@ -21,7 +21,7 @@ class App extends Component {
         <div>
           <Nav />
           <Routes>
-            <Route exact path='/' element={< Login />}></Route>
+            <Route exact path='/' element={<h1>Hello Buddy :)</h1>}></Route>
             <Route exact path='/login' element={< Login />}></Route>
             <Route exact path='/register' element={< Register />}></Route>
           </Routes>

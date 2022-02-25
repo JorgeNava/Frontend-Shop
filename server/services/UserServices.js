@@ -24,8 +24,14 @@ async function getById(id) {
     return user.toJSON()
 }
 
+async function getByEmail(email) {
+    const user = await User.find({ email: email});
+    return user.toJSON()
+}
+
 module.exports = {
     login,
     register,
-    getById
+    getById,
+    getByEmail
 };

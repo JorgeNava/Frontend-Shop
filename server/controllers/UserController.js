@@ -38,4 +38,13 @@ router.get('/:id', (req, res, next) => {
     })
 })
 
+router.get('/email:email', (req, res, next) => {
+    userServices.getById(req.params.email).then(
+        (user) => res.json(user)
+    ).catch(err => {
+        console.log("ERROR: ",err)
+        next(err)
+    })
+})
+
 module.exports = router;
