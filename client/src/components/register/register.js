@@ -1,24 +1,26 @@
+import { Link } from 'react-router-dom';
 import React, { useState } from "react";
 import axios from 'axios';
 import Header from '../header/header';
 import Footer from '../footer/footer';
-import './login.scss';
+import './register.scss';
 
-export default function Login(props) {
+export default function Register(props) {
   const [errorMessages, setErrorMessages] = useState({});
   const [isSubmitted, setIsSubmitted] = useState(false);
 
-  const [usernameLogin, setUsernameLogin] = useState('')
-  const [passwordLogin, setPasswordLogin] = useState('')
+  const [usernameRegister, setUsernameRegister] = useState('')
+  const [emailRegister, setEmailRegister] = useState('')
+  const [passwordRegister, setPasswordRegister] = useState('')
 
   const handleSubmit = (event) => {
     event.preventDefault();
 
     const config = {
-      url: 'http://localhost:3002/users/login',
+      url: 'http://localhost:3002/users/register',
       method: 'POST',
       data: {
-        username: usernameLogin, password: passwordLogin
+        username: usernameRegister, password: passwordRegister, email: emailRegister
       },
     };
     axios(config)
@@ -27,7 +29,7 @@ export default function Login(props) {
       })
       .catch(function (error) {
         console.log("Error: ", error);
-        setErrorMessages({ name: "pass", message: "Invalid credentials" });
+        setErrorMessages({ name: "Registration failed", message: "Somethig happend..." });
       });
   };
 
@@ -41,12 +43,17 @@ export default function Login(props) {
       <form onSubmit={handleSubmit}>
         <div className="input-container">
           <label>Username </label>
-          <input type="text" name="uname" required onChange={event => setUsernameLogin(event.target.value)} />
+          <input type="text" name="uname" required onChange={event => setUsernameRegister(event.target.value)} />
+          {renderErrorMessage("uname")}
+        </div>
+        <div className="input-container">
+          <label>Email </label>
+          <input type="email" name="email" required onChange={event => setEmailRegister(event.target.value)} />
           {renderErrorMessage("uname")}
         </div>
         <div className="input-container">
           <label>Password </label>
-          <input type="password" name="pass" required onChange={event => setPasswordLogin(event.target.value)} />
+          <input type="password" name="pass" required onChange={event => setPasswordRegister(event.target.value)} />
           {renderErrorMessage("pass")}
         </div>
         <div className="button-container">
@@ -60,8 +67,14 @@ export default function Login(props) {
     <div className="app">
       <Header />
       <div className="login-form">
-        <div className="title">Sign In</div>
-        {isSubmitted ? <div>User is successfully logged in</div> : renderForm}
+        <div className="title">Sign up</div>
+        {isSubmitted ?
+          <div id="sucessMessage">
+            <div>
+              User has successfully signed up!
+            </div>
+            <Link id="loginButton" centered to="/login">Log in</Link>
+        </div> : renderForm}
       </div>
       <Footer />
     </div>

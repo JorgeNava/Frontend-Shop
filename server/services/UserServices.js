@@ -4,9 +4,13 @@ const auth = require('../helpers/jwt.js')
 
 async function login( username, password ) {
     const user = await User.findOne({ username });
-    if(bcrypt.compareSync(password, user.password)){
-        const token = auth.generateAccessToken(username);
-        return {...user.toJSON(), token}
+    if (user) {
+        if(bcrypt.compareSync(password, user.password)){
+            const token = auth.generateAccessToken(username);
+            return {...user.toJSON(), token}
+        }
+    } else {
+        throw "Error in User Setices login";
     }
 }
 

@@ -60,3 +60,10 @@ input[type="submit"]:hover {
   gap: 8px;
   margin: 10px;
 }
+
+#sucessMessage{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
