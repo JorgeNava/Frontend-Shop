@@ -10,6 +10,8 @@ export default function Register(props) {
   const [usernameRegister, setUsernameRegister] = useState('')
   const [emailRegister, setEmailRegister] = useState('')
   const [passwordRegister, setPasswordRegister] = useState('')
+  const [ageRegister, setAgeRegister] = useState('')
+  const [adressRegister, setAdressRegister] = useState('')
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -18,7 +20,11 @@ export default function Register(props) {
       url: 'http://localhost:3002/users/register',
       method: 'POST',
       data: {
-        username: usernameRegister, password: passwordRegister, email: emailRegister
+        username: usernameRegister,
+        password: passwordRegister,
+        email: emailRegister,
+        age: ageRegister,
+        adress: adressRegister
       },
     };
     axios(config)
@@ -50,8 +56,16 @@ export default function Register(props) {
           {renderErrorMessage("uname")}
         </div>
         <div className="input-container">
-          <label>Password </label>
-          <input type="password" name="pass" required onChange={event => setPasswordRegister(event.target.value)} />
+          <label>Password</label>
+          <input type="password" name="pass" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$" title="Password must contain at least 8 characters, including one uppercase and one number." required onChange={event => setPasswordRegister(event.target.value)} />
+        </div>
+        <div className="input-container">
+          <label>Age</label>
+          <input type="number" name="age" required onChange={event => setAgeRegister(event.target.value)} />
+        </div>
+        <div className="input-container">
+          <label>Adress </label>
+          <input type="text" name="adress" required onChange={event => setAdressRegister(event.target.value)} />
           {renderErrorMessage("pass")}
         </div>
         <div className="button-container">

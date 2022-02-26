@@ -23,6 +23,7 @@ export default function Login(props) {
     axios(config)
       .then((resp) => {
         setIsSubmitted(true);
+        localStorage.setItem("User", JSON.stringify(resp.data));
       })
       .catch(function (error) {
         console.log("Error: ", error);
