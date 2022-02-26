@@ -10,23 +10,30 @@ import ReactDOM from "react-dom";
 
 import Login from './components/login/login';
 import Register from './components/register/register';
-import Nav from './components/nav/nav';
+import Header from './components/header/header';
+import Footer from './components/footer/footer';
+import Home from './components/home/home';
+import Products from './components/products/products';
+import Checkout from './components/checkout/checkout';
 
-import './App.css';
+import './App.scss';
+import './normalize.css';
+import './styles.scss';
 
 class App extends Component {
   render() {
     return (
       <Router>
-        <div>
-          <Nav />
+        <Header />
           <Routes>
-            <Route exact path='/' element={<h1>Hello Buddy :)</h1>}></Route>
+            <Route exact path='/' element={<Home />}></Route>
             <Route exact path='/login' element={< Login />}></Route>
             <Route exact path='/register' element={< Register />}></Route>
+            <Route exact path='/products' element={< Products />}></Route>
+            <Route exact path='/checkout' element={< Checkout />}></Route>
           </Routes>
-        </div>
-      </Router>
+        <Footer />
+        </Router>
     );
   }
 }

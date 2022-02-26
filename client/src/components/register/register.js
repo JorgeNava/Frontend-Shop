@@ -1,8 +1,6 @@
 import { Link } from 'react-router-dom';
 import React, { useState } from "react";
 import axios from 'axios';
-import Header from '../header/header';
-import Footer from '../footer/footer';
 import './register.scss';
 
 export default function Register(props) {
@@ -64,10 +62,9 @@ export default function Register(props) {
   );
 
   return (
-    <div className="app">
-      <Header />
+    <div className="registerContainer">
       <div className="login-form">
-        <div className="title">Sign up</div>
+        <div className="title"><Link className="secondTitle" to="/login">Sign In</Link> / Sign up</div>
         {isSubmitted ?
           <div id="sucessMessage">
             <div>
@@ -76,7 +73,6 @@ export default function Register(props) {
             <Link id="loginButton" centered to="/login">Log in</Link>
         </div> : renderForm}
       </div>
-      <Footer />
     </div>
   );
 }

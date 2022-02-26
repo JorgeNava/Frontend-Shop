@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import axios from 'axios';
-import Header from '../header/header';
-import Footer from '../footer/footer';
+import { Link } from 'react-router-dom';
 import './login.scss';
 
 export default function Login(props) {
@@ -57,13 +56,11 @@ export default function Login(props) {
   );
 
   return (
-    <div className="app">
-      <Header />
+    <div className="loginContainer">
       <div className="login-form">
-        <div className="title">Sign In</div>
+        <div className="title">Sign In / <Link className="secondTitle" to="/register">Sign up</Link></div>
         {isSubmitted ? <div>User is successfully logged in</div> : renderForm}
       </div>
-      <Footer />
     </div>
   );
 }
