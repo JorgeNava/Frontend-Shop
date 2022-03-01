@@ -29,7 +29,7 @@ class App extends Component {
             <Route exact path='/' element={<Home />}></Route>
             <Route exact path='/login' element={< Login />}></Route>
             <Route exact path='/register' element={< Register />}></Route>
-            <Route exact path='/products' element={< Products />}></Route>
+            <Route path='products/:internalId' element={< Products />}></Route>
             <Route exact path='/checkout' element={< Checkout />}></Route>
           </Routes>
         <Footer />

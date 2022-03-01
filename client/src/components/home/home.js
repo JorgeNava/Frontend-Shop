@@ -12,13 +12,14 @@ export default function Home(props){
   }
 
   function renderLoading() {
-    if (products.length == 0) {
+    if (products.length === 0) {
       return <h1>LOADING...</h1>
     } else {
       return (products.map((product, index) => {
+        const URL = `/products/${product.internalId}`;
         return (
           <div className="producto" key={index}>
-            <Link to="/products">
+            <Link to={URL}>
               <img
                 className="producto__imagen"
                 src={require("../../img/" + product.imageUrl + ".jpg")}
