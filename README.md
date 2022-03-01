@@ -59,3 +59,53 @@ Verificar que tengamos Node.Js instalado usando el sig. comando:
  Entrar a la carpeta services, crear una subcarpeta llamada 'mongodb' y ejecutar el comando descrito arriba para levantar el sevicio de MongoDB
  
  Entrar a la carpeta del backend y frontend y ejecutar el comando descrito arriba para levantar correspondientes aplicaciones.
+
+
+Requerimiento:
+● Un módulo para control de acceso, en el que se deberá solicitar un usuario y
+contraseña para poder realizar acciones específicas.
+● Opción para poder realizar un nuevo registro.
+● Solicitar datos de registro como nombre, usuario, edad, dirección, etc.
+● La contraseña deberá tener una longitud mínima de 6 caracteres, mayúscula y
+número.
+● Mostrar una pagina de inicio dónde se muestren algunas ofertas de artículos.
+● Barra de opciones y búsqueda donde aparezcan los diferentes tipos de
+artículos,categoría o de tema.
+Tipos de artículos:
+-Ropa
+-Figuras
+-Coleccionables
+Categorías:
+Películas
+Series
+Anime
+Videojuegos
+● Al seleccionar un artículo desde cualquiera de las secciones deberá abrirse la
+información detallada de ese artículo.
+● Dependiendo del artículo se podrá o no seleccionar talla, color.
+● Un módulo de transacciones que sean guardadas en una base de datos para su
+posterior consulta.
+● Al comprar solicitar método de pago, información de pago y dirección de entrega.
+● Métodos de pago: tarjeta de crédito, débito, paypal.
+● Enviar correo electrónico a manera de recibo por la compra con datos de transacción
+e información correspondiente.
+● Tener pagina de pedidos realizados donde se muestran las compras hechas y fecha
+de compra.
+● Tener en cuenta cantidad de artículos disponibles en almacén (5 por artículo)
+● Si se agotan bloquear opción de compra o mostrar mensaje correspondiente de
+producto agotado
+
+
+[TBD:
+     Jorge:
+ - Store purchases in database (rest qty in purchased product, include date)
+ - Create Purchases view and show data of all purchases 
+
+     Pau:
+ - If qty is 0 disable purchase and show message
+ - Implement in Home show products filtered by categories
+ 
+     Fer:
+ - Request all payment methdos data and store it
+ - Send email with purchase data
+]

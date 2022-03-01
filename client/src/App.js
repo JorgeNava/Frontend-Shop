@@ -1,85 +1,42 @@
-import React, { useState } from "react";
+import React, { Component } from 'react';
+
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+} from 'react-router-dom';
 import ReactDOM from "react-dom";
-import axios from 'axios';
-import './App.css';
-import "./styles.css";
 
-function App() {
-  const [errorMessages, setErrorMessages] = useState({});
-  const [isSubmitted, setIsSubmitted] = useState(false);
 
-  const errors = {
-    uname: "invalid username",
-    pass: "invalid password"
-  };
+import Login from './components/login/login';
+import Register from './components/register/register';
+import Header from './components/header/header';
+import Footer from './components/footer/footer';
+import Home from './components/home/home';
+import Products from './components/products/products';
+import Checkout from './components/checkout/checkout';
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
+import './App.scss';
+import './normalize.css';
+import './styles.scss';
 
-    var { uname, pass } = document.forms[0];
-
-    const config = {
-        url: 'http://localhost:3002/users/login',
-        method: 'POST',
-        headers: {
-            'Access-Control-Allow-Origin': '*',
-            'origin':'x-requested-with',
-            'Access-Control-Allow-Headers': 'POST, GET, PUT, DELETE, OPTIONS, HEAD, Authorization, Origin, Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers, Access-Control-Allow-Origin',
-            'Content-Type': 'application/json',
-        },
-      data: {username: uname, password: pass },
-    };
-    let resp = await axios(config);
-    console.log("RES:");
-    console.log(resp);
-    console.log(resp.data);
-    
-    if (resp) {
-      if (resp.password !== pass.value) {
-        setErrorMessages({ name: "pass", message: errors.pass });
-      } else {
-        setIsSubmitted(true);
-      }
-    } else {
-      setErrorMessages({ name: "uname", message: errors.uname });
-    }
-  };
-
-  const renderErrorMessage = (name) =>
-    name === errorMessages.name && (
-      <div className="error">{errorMessages.message}</div>
+class App extends Component {
+  render() {
+    return (
+      <Router>
+        <Header />
+          <Routes>
+            <Route exact path='/' element={<Home />}></Route>
+            <Route exact path='/login' element={< Login />}></Route>
+            <Route exact path='/register' element={< Register />}></Route>
+            <Route path='products/:internalId' element={< Products />}></Route>
+            <Route exact path='/checkout' element={< Checkout />}></Route>
+          </Routes>
+        <Footer />
+        </Router>
     );
-
-  const renderForm = (
-    <div className="form">
-      <form onSubmit={handleSubmit}>
-        <div className="input-container">
-          <label>Username </label>
-          <input type="text" name="uname" required />
-          {renderErrorMessage("uname")}
-        </div>
-        <div className="input-container">
-          <label>Password </label>
-          <input type="password" name="pass" required />
-          {renderErrorMessage("pass")}
-        </div>
-        <div className="button-container">
-          <input type="submit" />
-        </div>
-      </form>
-    </div>
-  );
-
-  return (
-    <div className="app">
-      <div className="login-form">
-        <div className="title">Sign In</div>
-        {isSubmitted ? <div>User is successfully logged in</div> : renderForm}
-      </div>
-    </div>
-  );
+  }
 }
-
 const rootElement = document.getElementById("root");
 ReactDOM.render(<App />, rootElement);
 export default App;
