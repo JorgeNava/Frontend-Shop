@@ -16,8 +16,6 @@ router.get('/get-one-by-id', (req, res, next) => {
 
 router.get('/get-one-by-internal-id/:internalId', (req, res, next) => {
     const INTERNAL_ID = req.params.internalId;
-    console.log('req.params',req.params);
-    console.log('INTERNAL_ID',INTERNAL_ID);
     productsService.getOneByInternalId(INTERNAL_ID)
         .then(product => {
             res.json(product)

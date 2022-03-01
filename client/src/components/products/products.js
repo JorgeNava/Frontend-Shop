@@ -10,7 +10,7 @@ export default function Products(props) {
     const { internalId } = useParams();
     const axios = new axiosService()
 
-    useEffect(async () => {
+    useEffect(() => {
         getProductData();
     }, []); 
 

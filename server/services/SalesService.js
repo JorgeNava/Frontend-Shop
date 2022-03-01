@@ -1,4 +1,5 @@
-const Sales = require('../models/Sales')
+const Sales = require('../models/SalesModel')
+var mongoose = require('mongoose');
 
 
 async function getOneById(id) {
@@ -7,6 +8,13 @@ async function getOneById(id) {
         return sale.toJSON()
     }
     return "[ERROR] SalesService - getOneById"
+}
+
+async function deleteOneById(id) {
+    const sales = await Sales.deleteOne({ _id: mongoose.Types.ObjectId(id) }, function (err) {
+        if (err) return err
+    });
+    return sales
 }
 
 async function getManyByBuyerId(buyerId) {
@@ -27,41 +35,18 @@ async function getManyByPaymentMethodId(paymentMethodId) {
     }
 }
 
-async function getManyBySellerName(sellerName) {
-    const sales = await Sales.find({ sellerName:  mongoose.Types.ObjectId(sellerName) });
-    if (sales) {
-        return sales.toJSON()
-    } else {
-        return "[ERROR] SalesService  - getManyBySellerName"
-    }
-}
-
 async function getOneByInternalId(internalId) {
     const sale = await Sales.find({ internalId:  mongoose.Types.ObjectId(internalId) });
     if (sale) {
-        return sale.toJSON()
+        return sale
     } else {
         return "[ERROR] SalesService  - getOneByInternalId"
     }
 }
 
-async function deleteOneById(id) {
-    const sales = await Sales.deleteOne({ _id: mongoose.Types.ObjectId(id) }, function (err) {
-        if (err) return err
-    });
-    return sales
-}
-
 async function saveOne(params) {
-    if (getOneByInternalId(params.internalId) != "[ERROR] SalesService  - getOneByInternalId") {
-        const sale = new Sales(params)
-        await sale.save();
-    } else {
-        const sale = Sales.updateOne({ internalId: params.internalId }, params, function (err, res) {
-            return err
-        });
-        await sale.toJson();
-    }
+    const sale = new Sales(params)
+    await sale.save();
 }
 
 
@@ -69,7 +54,6 @@ module.exports = {
     getOneById,
     getManyByBuyerId,
     getManyByPaymentMethodId,
-    getManyBySellerName,
     getOneByInternalId,
     deleteOneById,
     saveOne

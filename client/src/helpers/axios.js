@@ -24,7 +24,7 @@ export default class axiosService {
     }
   };
   
-  async post(endpoint, data) {
+  async postData(endpoint, data) {
     const TOKEN = JSON.parse(localStorage.getItem("User")).token;
     const config = {
       url:  this.baseUrl+endpoint,
@@ -32,7 +32,7 @@ export default class axiosService {
       headers: { Authorization: `Bearer ${TOKEN}` },
       data: data
     };
-    console.log('AXIOS[GET]', config);
+    console.log('AXIOS[POST]', config);
     try {
       const resp = await axios(config);
       console.log('AXIOS[RESP]', resp);
