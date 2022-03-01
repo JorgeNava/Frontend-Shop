@@ -6,6 +6,7 @@ const auth = require('./helpers/jwt.js')
 const unless = require('express-unless')
 const users = require('./controllers/UsersController.js')
 const products = require('./controllers/ProductsController.js')
+const sales = require('./controllers/SalesController.js')
 const errors = require('./helpers/errorHandler.js')
 
 auth.authenticateToken.unless = unless
@@ -17,12 +18,14 @@ app.use(auth.authenticateToken.unless({
         { url: '/users/register', methods: ['POST']},
         { url: /^\/users\/email\/.*/, methods: ['GET'] },
         { url: /^\/products\/.*/, methods: ['GET'] },
+        { url: /^\/sales\/.*/, methods: ['GET','POST'] },
     ]
 }))
 
 app.use(express.json()) 
 app.use('/users', users)
 app.use('/products', products)
+app.use('/sales', sales)
 app.use(errors.errorHandler)
 
 const uri = "mongodb://localhost:27017";

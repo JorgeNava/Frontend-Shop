@@ -99,6 +99,7 @@ producto agotado
 [TBD:
      Jorge:
  - Store purchases in database (rest qty in purchased product, include date)
+ - Make checkout update paymentMethodDetails (just grabbing first char)
  - Create Purchases view and show data of all purchases 
 
      Pau:
@@ -106,6 +107,7 @@ producto agotado
  - Implement in Home show products filtered by categories
  
      Fer:
- - Request all payment methdos data and store it
+ - Request all payment methdos data and delivery adress
+ - Fix checkout submit button
  - Send email with purchase data
 ]
