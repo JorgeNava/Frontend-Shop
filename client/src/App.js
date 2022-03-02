@@ -15,6 +15,7 @@ import Footer from './components/footer/footer';
 import Home from './components/home/home';
 import Products from './components/products/products';
 import Checkout from './components/checkout/checkout';
+import Purchases from './components/purchases/purchases';
 
 import './App.scss';
 import './normalize.css';
@@ -31,6 +32,7 @@ class App extends Component {
             <Route exact path='/register' element={< Register />}></Route>
             <Route path='products/:internalId' element={< Products />}></Route>
             <Route exact path='/checkout' element={< Checkout />}></Route>
+            <Route exact path='/purchases' element={< Purchases />}></Route>
           </Routes>
         <Footer />
         </Router>

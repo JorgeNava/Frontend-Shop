@@ -14,9 +14,9 @@ router.get('/get-one-by-id', (req, res, next) => {
     })
 })
 
-router.get('/get-many-by-buyer-id/:buyerId', (req, res, next) => {
-    const BUYER_ID = req.body.buyerId;
-    salesService.getManyByBuyerId(BUYER_ID)
+router.get('/get-many-by-buyer-id/:buyerUsername', (req, res, next) => {
+    const BUYER_USERNAME = req.params.buyerUsername;
+    salesService.getManyByBuyerId(BUYER_USERNAME)
         .then(sales => {
             res.json(sales)
         }
