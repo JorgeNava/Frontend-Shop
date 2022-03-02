@@ -45,8 +45,8 @@ export default function Products(props) {
         }
         return (
             <input onChange={event => setPurchasedProductDetails({
-                quantity: event.target.value,
-                ...purchasedProductDetails
+                ...purchasedProductDetails,
+                quantity: event.target.value
             })} className="formulario__campo" type="number" placeholder={"Cantidad: " + product.quantity} min="1"></input>
         )
     }
@@ -96,16 +96,16 @@ export default function Products(props) {
                         {renderTitle()}
                         <form className="formulario">
                             <select defaultValue="NONE" className="formulario__campo" name="" id="" onChange={event => setPurchasedProductDetails({
-                                size: event.target.value,
-                                ...purchasedProductDetails
+                                ...purchasedProductDetails,
+                                size: event.target.value
                             })}>
                                 <option value="NONE" disabled>--Seleccionar talla--</option>
                                 {renderSizeOptions()}
                             </select>
                             {renderQuantity()}
                             <select defaultValue="NONE" className="formulario__campo" name="" id="" onChange={event => setPurchasedProductDetails({
-                                color: event.target.value,
-                                ...purchasedProductDetails
+                                ...purchasedProductDetails,
+                                color: event.target.value
                             })}>
                                 <option value="NONE" disabled>--Seleccionar color--</option>
                                 {renderColorOptions()}

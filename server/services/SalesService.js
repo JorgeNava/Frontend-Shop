@@ -17,10 +17,10 @@ async function deleteOneById(id) {
     return sales
 }
 
-async function getManyByBuyerId(buyerId) {
-    const sales = await Sales.find({ buyerId:  mongoose.Types.ObjectId(buyerId) });
+async function getManyByBuyerId(buyerUsername) {
+    const sales = await Sales.find({ buyerUsername: buyerUsername });
     if (sales) {
-        return sales.toJSON()
+        return sales
     } else {
         return "[ERROR] SalesService  - getManyByBuyerId"
     }

@@ -98,9 +98,7 @@ producto agotado
 
 [TBD:
      Jorge:
- - Store purchases in database (rest qty in purchased product, include date)
- - Make checkout update paymentMethodDetails (just grabbing first char)
- - Create Purchases view and show data of all purchases 
+ - Send email with purchase data
 
      Pau:
  - If qty is 0 disable purchase and show message
