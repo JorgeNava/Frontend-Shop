@@ -27,12 +27,12 @@ export default function Purchases(props) {
                             <td>{ purchase.product.size }</td>
                             <td>{ purchase.product.color }</td>
                             <td>{ purchase.product.quantity }</td>
-                            <td>{ purchase.product.cost }</td>
+                            <td>${ purchase.product.cost }</td>
                             <td>{ purchase.date }</td>
                             <td>{ purchase.deliveryAdress }</td>
                             <td>{ purchase.paymentMethodId }</td>
-                            <td>{ purchase.subtotal }</td>
-                            <td>{ purchase.total }</td>
+                            <td>${ purchase.subtotal.toFixed(2) }</td>
+                            <td>${ purchase.total.toFixed(2) }</td>
                         </tr>
                     )
                 });
@@ -45,7 +45,7 @@ export default function Purchases(props) {
     }, []);
 
     return (
-        <div>
+        <div className="tableContainer">
             <table>
                 <tbody>
                     <tr>

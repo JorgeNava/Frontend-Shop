@@ -40,7 +40,7 @@ export default function Home(props) {
     }
     return (
         <div>
-            <p className="formulario__submitpago" action="https://secure.payzen.eu/vads-payment/" >Metodo de Pago</p>
+            <p className="formulario__submitpago" action="https://secure.payzen.eu/vads-payment/">Metodo de Pago</p>
             <form  >
                 <select defaultValue="NONE" className="formulario__submitpagox" name="" id=""onChange={event => setPaymentMethod({
                     ...paymentMethod,

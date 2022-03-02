@@ -5,10 +5,16 @@ import axiosService from "../../helpers/axios";
 
 export default function Home(props){
   const [products, setProducts] = useState([])
+  const [filters, setFilters] = useState({
+    type: "None",
+    category: "None"
+  })
   const axios = new axiosService()
 
   async function getProductsData() {
-    setProducts(await axios.getData("/products/get-many-by-type?type=Clothe"))
+    //const REQ_URL = "/products/get-many-by-type?type=Clothe"
+    const REQ_URL = "/products/get-many-by-filters/" + filters.type + "/" + filters.category;
+    setProducts(await axios.getData(REQ_URL))
   }
 
   function renderLoading() {
@@ -39,7 +45,7 @@ export default function Home(props){
 
   useEffect(() => {
     getProductsData();
-  }, [products]); 
+  }, [filters]); 
 
 
   return (
@@ -49,22 +55,30 @@ export default function Home(props){
           defaultValue="0"
           name="OS"
           className="navegacion__enlace navegacion__enlace--activo"
+          onChange={event => setFilters({
+            ...filters,
+            type: event.target.value
+          })}
         >
-          <option value="0"> Tipos de Articulos </option>
-          <option value="2">Ropa</option>
-          <option value="3">Figuras</option>
-          <option value="10">Coleccionables</option>
+          <option value="None"> Tipos de Articulos </option>
+          <option value="Clothe">Ropa</option>
+          <option value="Figures">Figuras</option>
+          <option value="Collectables">Coleccionables</option>
         </select>
         <select
           defaultValue="0"
           name="OS"
           className="navegacion__enlace navegacion__enlace--activo"
+          onChange={event => setFilters({
+            ...filters,
+            category: event.target.value
+          })}
         >
-          <option value="0"> Categorias </option>
-          <option value="2">Peliculas</option>
-          <option value="3">Series</option>
-          <option value="10">Anime</option>
-          <option value="12">Videojuegos</option>
+          <option value="None"> Categorias </option>
+          <option value="Movies">Peliculas</option>
+          <option value="Series">Series</option>
+          <option value="Anime">Anime</option>
+          <option value="Videogames">Videojuegos</option>
         </select>
       </nav>
 

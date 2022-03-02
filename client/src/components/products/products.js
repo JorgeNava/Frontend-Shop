@@ -33,7 +33,7 @@ export default function Products(props) {
         }
         return (
             <div>
-                <h1>{product.name}</h1>
+                <h1>{product.name} - ${product.cost}</h1>
                 <p>{product.description}</p>
             </div>
         )
@@ -89,7 +89,7 @@ export default function Products(props) {
             </nav>
 
             <main className="contenedor">
-                <h1>React JS</h1>
+                <h1>Product</h1>
                 <div className="camisa">
                     {renderImage()}
                     <div className="camisa__contenido">
