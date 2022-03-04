@@ -94,10 +94,3 @@ de compra.
 ● Tener en cuenta cantidad de artículos disponibles en almacén (5 por artículo)
 ● Si se agotan bloquear opción de compra o mostrar mensaje correspondiente de
 producto agotado
-
-
-[TBD:
-     Fer:
- - Request all payment methdos data and delivery adress
- - Send email with purchase data
-]
