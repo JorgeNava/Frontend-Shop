@@ -97,15 +97,7 @@ producto agotado
 
 
 [TBD:
-     Jorge:
- - Send email with purchase data
-
-     Pau:
- - If qty is 0 disable purchase and show message
- - Implement in Home show products filtered by categories
- 
      Fer:
  - Request all payment methdos data and delivery adress
- - Fix checkout submit button
  - Send email with purchase data
 ]

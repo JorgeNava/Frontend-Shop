@@ -33,7 +33,7 @@ export default function Products(props) {
         }
         return (
             <div>
-                <h1>{product.name}</h1>
+                <h1>{product.name} - ${product.cost}</h1>
                 <p>{product.description}</p>
             </div>
         )
@@ -82,6 +82,30 @@ export default function Products(props) {
         }))
     }
 
+    function renderPurchaseButton() {
+        try {
+            if (product.quantity < purchasedProductDetails.quantity) {
+                return (
+                    <button className="formulario__submit">
+                        <p>Pagar</p>
+                    </button>
+                )
+            } else {
+                return (
+                    <Link to="/checkout" onClick={saveProductPurchase()} className="formulario__submit" type="submit" value="Agregar al carrito">
+                        <p>Pagar</p>
+                    </Link>
+                )
+            }
+        } catch (error) {
+            return (
+                <button className="formulario__submit">
+                    <p>Pagar</p>
+                </button>
+            )
+        }
+    }
+
     return (
         <div>
             <nav className="navegacion">
@@ -89,7 +113,7 @@ export default function Products(props) {
             </nav>
 
             <main className="contenedor">
-                <h1>React JS</h1>
+                <h1>Product</h1>
                 <div className="camisa">
                     {renderImage()}
                     <div className="camisa__contenido">
@@ -110,9 +134,7 @@ export default function Products(props) {
                                 <option value="NONE" disabled>--Seleccionar color--</option>
                                 {renderColorOptions()}
                             </select>
-                            <Link to="/checkout" onClick={saveProductPurchase()} className="formulario__submit" type="submit" value="Agregar al carrito">
-                                <p>Pagar</p>
-                            </Link>
+                            {renderPurchaseButton()}
                         </form>
                     </div>
                 </div>

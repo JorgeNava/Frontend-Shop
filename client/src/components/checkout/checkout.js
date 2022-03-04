@@ -4,7 +4,7 @@ import axiosService from "../../helpers/axios";
 import { v4 as uuidv4 } from 'uuid';
 
 export default function Home(props) {
-    const [paymentMethod, setPaymentMethod] = useState(null);
+    const [paymentMethod, setPaymentMethod] = useState({});
     const axios = new axiosService()
 
     async function savePaymentMethod() {
@@ -31,17 +31,64 @@ export default function Home(props) {
                 quantity: PURCHASED_DETAILS.purchasedProductDetails.quantity,
                 cost: PURCHASED_DETAILS.product.cost,
             },
-            deliveryAdress:  "Example adress (CHANGE FOR FUTURE IMPLEMENTATION - FER)",
+            deliveryAdress: PURCHASED_DETAILS.paymentMethod.adress,
             subtotal: SUBTOTAL,
             total: TOTAL
         }
         await axios.postData("/sales/save-one", NEW_PURCHASE_REGISTER);
-        await axios.postData("/products/save-one", {internalId: NEW_PURCHASED_DETAILS.product.internalId, quantity: NEW_PURCHASED_DETAILS.product.quantity - NEW_PURCHASED_DETAILS.purchasedProductDetails.quantity})
+        await axios.postData("/products/save-one", { internalId: NEW_PURCHASED_DETAILS.product.internalId, quantity: NEW_PURCHASED_DETAILS.product.quantity - NEW_PURCHASED_DETAILS.purchasedProductDetails.quantity })
+        try {
+            await axios.postData("/emai/send-one", { to: USER.email })
+        } catch (error) {
+            console.log('> Error sending message: ', error);
+        }
+        window.open("https://secure.payzen.eu/vads-payment/", "_blank");
+        window.location.href = "/"
     }
+
+    function renderPaymentMethodFields() {
+        if (paymentMethod.hasOwnProperty("type")) {
+            if (paymentMethod.type == "Paypal") {
+                return (
+                    <div>
+                        <p className="formulario__submitpago">Numero de tarjeta</p>
+                        <input className="formulario__submitpagox" type="email" name="signature" placeholder="Correo Paypal"
+                            onChange={event => setPaymentMethod({
+                                ...paymentMethod,
+                                paymentMethodIdentifier: event.target.value
+                            })}
+                        />
+                    </div>
+                    )
+            }else if(paymentMethod.type == "NONE") {
+                return (
+                    <div></div>
+                )
+            }else{
+                return (
+                    <div>
+                        <p className="formulario__submitpago">Numero de tarjeta</p>
+                        <input className="formulario__submitpagox" name="signature" placeholder="Numero de tarjeta"
+                            onChange={event => setPaymentMethod({
+                                ...paymentMethod,
+                                paymentMethodIdentifier: event.target.value
+                            })}
+                        />
+                        <input className="formulario__submitpagox" name="expirationDate" placeholder="Fecha de expirtacion"/>
+                        <input className="formulario__submitpagox" name="pin" placeholder="PIN"/>
+                    </div>
+                )
+            }
+        }
+        return (
+            <div></div>
+        ) 
+    }
+
     return (
         <div>
-            <p className="formulario__submitpago" action="https://secure.payzen.eu/vads-payment/" >Metodo de Pago</p>
-            <form  >
+            <p className="formulario__submitpago" >Metodo de Pago</p>
+            <form >
                 <select defaultValue="NONE" className="formulario__submitpagox" name="" id=""onChange={event => setPaymentMethod({
                     ...paymentMethod,
                     type: event.target.value
@@ -69,15 +116,15 @@ export default function Home(props) {
                         phone: event.target.value
                     })}
                 />
-                <p className="formulario__submitpago">Numero de tarjeta</p>
-                <input className="formulario__submitpagox" name="signature" placeholder="Numero de tarjeta"
+                <input className="formulario__submitpagox" name="parametre4" placeholder="Dirección de envio"
                     onChange={event => setPaymentMethod({
                         ...paymentMethod,
-                        paymentMethodIdentifier: event.target.value
+                        adress: event.target.value
                     })}
                 />
+                {renderPaymentMethodFields()}
             </form>
-            <p> <input  className="formulario__submitpago submitButtonCheckout" onClick={savePaymentMethod} type="submit" name="payer" value="Pagar"/></p>
+            <button  className="formulario__submitpago submitButtonCheckout" onClick={savePaymentMethod} type="submit" name="payer" value="Pagar">Pagar</button>
         </div>
     );
 }

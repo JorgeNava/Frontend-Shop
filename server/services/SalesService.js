@@ -18,7 +18,7 @@ async function deleteOneById(id) {
 }
 
 async function getManyByBuyerId(buyerUsername) {
-    const sales = await Sales.find({ buyerUsername: buyerUsername });
+    const sales = await Sales.find({ buyerUsername: buyerUsername }).sort({date: -1});
     if (sales) {
         return sales
     } else {

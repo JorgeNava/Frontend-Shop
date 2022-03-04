@@ -26,6 +26,18 @@ router.get('/get-one-by-internal-id/:internalId', (req, res, next) => {
     })
 })
 
+router.get('/get-many-by-filters/:type/:category', (req, res, next) => {
+    const TYPE = req.params.type;
+    const CATEGORY = req.params.category;
+    productsService.getManyByFilters(TYPE,CATEGORY)
+        .then(product => {
+            res.json(product)
+        }
+        ).catch(err => {
+        next(err)
+    })
+})
+
 router.get('/get-many-by-type/', (req, res, next) => {
     const TYPE = req.query.type;
     productsService.getManyByType(TYPE)

@@ -18,6 +18,22 @@ async function getOneByInternalId(id) {
     }
 }
 
+async function getManyByFilters(type, category) {
+    let products = null;
+    if (type != "None" && category != "None") {
+        products = await Products.find({ type: type, category: category });
+    } else if (type != "None" && category == "None") {
+        products = await Products.find({ type: type });
+    } else if (type == "None" && category != "None") {
+        products = await Products.find({ category: category });
+    } else if (type == "None" && category == "None") {
+        products = await Products.find({});
+    } else {
+        products = "None";
+    }
+    return products
+}
+
 async function getManyByType(typeName) {
     const products = await Products.find({ type: typeName });
     if (products) {
@@ -69,6 +85,7 @@ async function saveOne(params) {
 module.exports = {
     getOneById,
     getOneByInternalId,
+    getManyByFilters,
     getManyByType,
     getManyByCategory,
     deleteOneByInternalId,
