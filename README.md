@@ -97,10 +97,6 @@ producto agotado
 
 
 [TBD:
-     Pau:
- - If qty is 0 disable purchase and show message
- - Change purchases icon to appropiate one
- 
      Fer:
  - Request all payment methdos data and delivery adress
  - Send email with purchase data

@@ -10,7 +10,7 @@ class Header extends Component {
           <img src={require('../../img/logo.png')} alt="Logotipo"></img>
         </Link>
         <Link className="purchaseIcon" to="/purchases">
-          <img src="https://img.icons8.com/ios/50/000000/login-rounded-right--v1.png" alt="purchasesIcon"></img>
+          <img src={require('../../img/purchase.png')} alt="purchasesIcon"></img>
           <p>Purchases</p>
         </Link>
         <Link className="loginIcon" to="/login">

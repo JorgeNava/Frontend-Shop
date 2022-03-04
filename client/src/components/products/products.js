@@ -82,6 +82,30 @@ export default function Products(props) {
         }))
     }
 
+    function renderPurchaseButton() {
+        try {
+            if (product.quantity < purchasedProductDetails.quantity) {
+                return (
+                    <button className="formulario__submit">
+                        <p>Pagar</p>
+                    </button>
+                )
+            } else {
+                return (
+                    <Link to="/checkout" onClick={saveProductPurchase()} className="formulario__submit" type="submit" value="Agregar al carrito">
+                        <p>Pagar</p>
+                    </Link>
+                )
+            }
+        } catch (error) {
+            return (
+                <button className="formulario__submit">
+                    <p>Pagar</p>
+                </button>
+            )
+        }
+    }
+
     return (
         <div>
             <nav className="navegacion">
@@ -110,9 +134,7 @@ export default function Products(props) {
                                 <option value="NONE" disabled>--Seleccionar color--</option>
                                 {renderColorOptions()}
                             </select>
-                            <Link to="/checkout" onClick={saveProductPurchase()} className="formulario__submit" type="submit" value="Agregar al carrito">
-                                <p>Pagar</p>
-                            </Link>
+                            {renderPurchaseButton()}
                         </form>
                     </div>
                 </div>

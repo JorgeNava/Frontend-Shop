@@ -28,7 +28,6 @@ router.get('/get-many-by-buyer-id/:buyerUsername', (req, res, next) => {
 
 
 router.post('/save-one', (req, res, next) => {
-    console.log('here', req.body);
     salesService.saveOne(req.body).then(
         () => res.send('success')
     ).catch(err => {
